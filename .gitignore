@@ -1,0 +1,6 @@
+*.pem
+paquete_transito.json
+paquete_transito.original.json
+paquete_archivo.json
+recibido_*.pdf
+node_modules/

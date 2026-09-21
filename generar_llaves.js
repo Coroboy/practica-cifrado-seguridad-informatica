@@ -1,0 +1,21 @@
+/**
+ * MODULO 1 - Generador de Pares de Claves RSA
+ * Genera y guarda en disco las llaves publica y privada en formato PEM.
+ */
+const crypto = require('crypto');
+const fs = require('fs');
+
+function generarParClaves(nombreUsuario) {
+  const { publicKey, privateKey } = crypto.generateKeyPairSync('rsa', {
+    modulusLength: 2048, // Tamano seguro estandar
+    publicKeyEncoding: { type: 'spki', format: 'pem' },
+    privateKeyEncoding: { type: 'pkcs8', format: 'pem' }
+  });
+
+  fs.writeFileSync(`${nombreUsuario}_publica.pem`, publicKey);
+  fs.writeFileSync(`${nombreUsuario}_privada.pem`, privateKey);
+  console.log(`[+] Par de llaves generado exitosamente para: ${nombreUsuario}`);
+}
+
+generarParClaves('leonora');
+generarParClaves('pedro');
